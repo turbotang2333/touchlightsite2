@@ -1,0 +1,1624 @@
+:root {
+  --navbar-height: 60px;
+  --parallax-height: 600px; /* 设置一个固定的高度，您可以根据需要调整这个值 */
+  --primary-bg: #1a1eb2; /* 深蓝色 */
+  --secondary-bg: #4b0082; /* 深紫色 */
+  --highlight-color: #ffd700; /* 金黄色 */
+  --text-color: #e6e6fa; /* 淡紫色，用于主要文本 */
+  --text-color-dark: #191970; /* 深蓝色，用于深色背景上的文本 */
+  --accent-color-1: #9370db; /* 中紫色 */
+  --accent-color-2: #4169e1; /* 皇家蓝 */
+  --button-color: #ffd700; /* 金黄色 */
+  --button-hover-color: #ffa500; /* 橙色 */
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: "Noto Sans SC", sans-serif;
+  padding-top: 60px; /* 根据您的导航栏高度调整 */
+  overflow-y: scroll; /* 始终显示垂直滚动条 */
+  overflow-x: hidden;
+  background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
+  color: var(--text-color);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 60px; /* 保持导航栏的空间 */
+}
+
+.content-wrapper {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--navbar-height); /* 确保内容不被页脚遮挡 */
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.parallax-container {
+  width: 100%;
+  height: var(--parallax-height);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  background-color: transparent; /* 移除半透明白色背景 */
+  margin-bottom: 0;
+}
+
+.parallax-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.video-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  height: 50%;
+}
+
+.video-container video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translateX(-50%) translateY(-50%);
+  object-fit: cover; /* 确保视频填满容器 */
+}
+
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  color: #ffffff;
+  height: 50%;
+  z-index: 1; /* 确保文字内容在视频层之上 */
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+@media (min-width: 768px) {
+  .parallax-content {
+    flex-direction: row;
+    position: relative;
+    height: 100%;
+  }
+
+  .video-container {
+    flex: 3; /* 视频部分占据更多空间 */
+    height: 100%;
+    position: relative;
+    overflow: hidden; /* 确保视频不会溢出容器 */
+  }
+
+  .hero-content {
+    flex: 2; /* 文字部分占据较少空间 */
+    height: 100%;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.6); /* 保景半透明 */
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .video-container video {
+    position: absolute;
+    top: 50%;
+    left: 0; /* 将视频对齐到左侧 */
+    width: 100%; /* 设置宽度为100% */
+    height: 100%; /* 设置高度为100% */
+    transform: translateY(-50%); /* 仅在垂直方向上居中 */
+    object-fit: cover; /* 确保视频填满容器 */
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-content {
+    width: 100%; /* 在窄屏上占满宽度 */
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+}
+
+.cta-button {
+  background-color: rgba(52, 152, 219, 0.8); /* 使按钮略微透明 */
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cta-button:hover {
+  background-color: rgba(41, 128, 185, 0.9); /* 悬停时稍微不透明 */
+  transform: translateY(-2px);
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  background-color: rgba(0, 0, 0, 0.8); /* 黑色半透明背景 */
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navbar nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%; /* 添这行 */
+  height: 100%; /* 添加这行 */
+}
+
+.navbar .logo {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 24px;
+  display: flex; /* 添加这行 */
+  align-items: center; /* 添加这行 */
+  height: 100%; /* 添加这行 */
+}
+
+.navbar ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  margin-left: 20px;
+  display: flex; /* 添加这行 */
+  align-items: center; /* 添加这行 */
+  height: 100%; /* 添加这行 */
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex; /* 添加这行 */
+  align-items: center; /* 添加这行 */
+  height: 100%; /* 添加这行 */
+  font-size: 1.2rem; /* 增加桌面版本的字体大小 */
+}
+
+.hero-content {
+  flex: 1; /* 保持为1，使文字内容占据较少空间 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem; /* 减小内边距 */
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+.cta-button {
+  background-color: #ff7f00;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #ff9933;
+}
+
+.content {
+  position: relative;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateZ(0);
+}
+
+.case-studies {
+  position: relative;
+  overflow: hidden;
+  background-image: url("images/tech_background.png");
+  background-size: cover;
+  background-position: center;
+  padding: 50px 0;
+  color: white;
+}
+
+.case-slider {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.case-item {
+  flex: 0 0 100%;
+  padding: 20px;
+}
+
+.case-item img {
+  width: 100%;
+  height: auto;
+}
+
+.slider-prev,
+.slider-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.slider-prev {
+  left: 10px;
+}
+
+.slider-next {
+  right: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+form input,
+form textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  background-color: #ff7f00;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #ff9933;
+}
+
+footer {
+  flex-shrink: 0;
+  height: var(--navbar-height);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 1001; /* 确保汉堡按钮在上层 */
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0; /* 移除内边距 */
+  }
+
+  .navbar nav {
+    flex-direction: row; /* 改回行布局 */
+    justify-content: space-between; /* 两端对齐 */
+    align-items: center;
+    height: var(--navbar-height);
+  }
+
+  .hamburger {
+    display: block;
+    position: relative; /* 改为相对定位 */
+    right: 0;
+    top: 0;
+    transform: none; /* 移除transform */
+    height: var(--navbar-height); /* 设置高度 */
+    display: flex; /* 添加flex布局 */
+    align-items: center; /* 垂直居中 */
+    padding: 0 20px; /* 添加一些内边距 */
+  }
+
+  .nav-links {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 999; /* 确保菜单在视频之上 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 为 center，使整个菜单垂直居中 */
+    align-items: center;
+    padding: 0; /* 移除上下内边距 */
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .nav-links.show {
+    opacity: 1;
+    pointer-events: auto;
+    max-height: calc(
+      100vh - var(--navbar-height)
+    ); /* 调整最大高度为视口高度减去导航栏高度 */
+    overflow-y: auto;
+  }
+
+  .nav-links li {
+    margin: 0; /* 移除上下margin */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    width: 100%;
+    display: flex; /* 添加 flex 布局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    height: 70px; /* 稍微增加高度 */
+  }
+
+  .nav-links.show li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-links li a {
+    display: flex; /* 改为 flex 布局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    padding: 0 20px; /* 移除上下内边距，保留左右内边距 */
+    color: #fff;
+    font-size: 1.3rem; /* 增加字小 */
+    font-weight: bold; /* 添加粗体 */
+    width: 100%;
+    height: 100%; /* 让链接占满个 li  */
+  }
+
+  .nav-links li:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .nav-links li:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .nav-links li:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+
+  .parallax-container {
+    height: calc(
+      100vh - var(--navbar-height)
+    ); /* 使容器占满整个视口高度减去导航栏高度 */
+  }
+
+  .video-container {
+    flex: 2; /* 减少视频所占比例 */
+  }
+
+  .hero-content {
+    flex: 1;
+    padding: 1.5rem 1rem; /* 减小上下内边距 */
+    justify-content: center; /* 改为对齐 */
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem; /* 稍微减小字体大小 */
+    margin-bottom: 0.3rem; /* 进一步减小标题下方的间距 */
+  }
+
+  .hero-content p {
+    font-size: 1.2rem; /* 稍微减小字体大小 */
+    margin-bottom: 1.5rem; /* 减小段落下方的间距 */
+  }
+
+  .cta-button {
+    padding: 10px 20px; /* 稍微减小按钮尺寸 */
+    font-size: 1rem; /* 稍微减小按钮字体 */
+    margin-bottom: 0.5rem; /* 减小按钮下方的间距 */
+  }
+
+  footer {
+    padding: 0 10px;
+  }
+
+  footer p {
+    font-size: 0.9rem;
+  }
+}
+
+/* 为了确保在更小的屏幕上也有良好的显示效果，可以添加以下媒体查询 */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+    margin-bottom: 0.2rem; /* 在更的屏幕上进步减小距 */
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .cta-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+.navbar ul.nav-links {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%; /* 添加这行 */
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+/* 默认隐藏移动端专用的菜单项 */
+.mobile-only {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  /* 宽屏时隐藏"首页"选项 */
+  .mobile-only {
+    display: none !important; /* 使用 !important 来确保覆盖其他样式 */
+  }
+}
+
+@media (max-width: 768px) {
+  /* 窄屏时显示"首页"选项 */
+  .mobile-only {
+    display: flex !important; /* 使用 !important 来确保显示 */
+  }
+
+  .nav-links li {
+    /* 保持其他样式不变 */
+    display: none; /* 初始隐藏所有菜单项 */
+  }
+
+  .nav-links.show li {
+    display: flex !important; /* 使用 !important 来确保显示菜单时显示所有菜单项 */
+  }
+}
+
+.slogan-mission {
+  background-color: rgba(255, 255, 255, 0.4); /* 降低初始背景不透明度 */
+  padding: 60px 0;
+  text-align: center;
+  opacity: 1;
+  box-shadow: none;
+  transition: background-color 0.3s ease, color 0.3s ease; /* 添加颜色过渡效 */
+}
+
+.slogan-mission .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.2); /* 添加一个半透明的容器背景 */
+  border-radius: 10px; /* 添加圆角 */
+}
+
+.slogan h2,
+.slogan p,
+.mission h3,
+.mission li {
+  transition: color 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* 添加文字阴影以加可读性 */
+}
+
+/* 移除或注释掉固定的颜色设置 */
+/*
+.slogan h2 {
+  color: #2c3e50;
+}
+
+.slogan p {
+  color: #34495e;
+}
+
+.mission h3 {
+  color: #2c3e50;
+}
+
+.mission li {
+  color: #34495e;
+}
+*/
+
+.parallax-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150%; /* 增加高度以覆盖更多区域 */
+  background-image: url("../images/tech_background.png"); /* 更新背景图片路径 */
+  background-size: cover;
+  background-position: center top; /* 将背景图片固定在顶部 */
+  background-repeat: no-repeat;
+  z-index: -1;
+  transform: translateY(0); /* 初始位置 */
+  will-change: transform; /* 优化性能 */
+}
+
+/* 在产品展示和公司使命之间添加空白区域 */
+.parallax-spacer {
+  flex-grow: 1; /* 允许空白区域增长以填充剩余空间 */
+  min-height: 200px; /* 保持最小高度 */
+}
+
+/* 在公司使命和页尾之间添加空白区域 */
+.mission-footer-spacer {
+  flex-grow: 1; /* 允许空白区域增长以填充剩余空间 */
+  min-height: calc(200px + var(--navbar-height)); /* 调整最小高度 */
+}
+
+/* 确保其他元素也没有圆角 */
+.parallax-container,
+.nav-links,
+form input,
+form textarea {
+  border-radius: 0;
+}
+
+/* 现有的样式保持不变 */
+
+/* 气与法页面特定样式 */
+.mofa-page {
+  background-color: #0a1930; /* 深蓝色背景 */
+  color: #ffffff;
+}
+
+.video-intro {
+  position: relative;
+  height: 50vh; /* 将高度改为视口高度的50% */
+  min-height: 300px; /* 设置最小高度，确保在小屏幕上也有足够的空间 */
+  overflow: hidden;
+}
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fullscreen-toggle {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.fullscreen-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.video-description {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  max-width: 600px;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .video-intro {
+    height: 40vh; /* 在小屏幕上进一步减小高度 */
+    min-height: 250px;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .video-description {
+    bottom: 30px;
+    left: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-intro {
+    height: 30vh; /* 在更小的屏幕上再次减小高度 */
+    min-height: 200px;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .video-description {
+    bottom: 20px;
+    left: 20px;
+  }
+}
+
+.product-highlights {
+  padding: 50px 20px;
+  overflow: hidden;
+}
+
+.highlights-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px; /* 使用 gap 替代 margin 来设置间距 */
+}
+
+.highlight-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 在宽屏上实现两列布局 */
+@media (min-width: 1024px) {
+  .highlight-item {
+    width: calc(50% - 20px); /* 50%宽度减去间距 */
+  }
+}
+
+.highlight-text {
+  margin-bottom: 15px;
+}
+
+.highlight-text h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: #ffa500;
+}
+
+.highlight-text p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.highlight-images {
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 宽高比 */
+  position: relative;
+  overflow: hidden;
+}
+
+/* 图片滑块样式 */
+.image-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.image-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-slider img.active {
+  opacity: 1;
+}
+
+.slider-prev,
+.slider-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.slider-prev {
+  left: 10px;
+}
+
+.slider-next {
+  right: 10px;
+}
+
+/* 气与魔法页面整体样式 */
+.mofa-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 确保 footer 紧贴内容 */
+footer {
+  margin-top: auto;
+}
+
+/* 添加到文件末尾 */
+.operation-requirements {
+  margin: 40px 0;
+}
+
+.requirements-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.expandable-item {
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.expandable-header {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expandable-header::after {
+  content: "+";
+  font-size: 1.2em;
+  transition: transform 0.3s ease;
+}
+
+.expandable-header.active {
+  background-color: rgba(255, 165, 0, 0.4);
+}
+
+.expandable-header.active::after {
+  transform: rotate(45deg);
+}
+
+.expandable-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0 15px;
+}
+
+.expandable-content p {
+  margin: 15px 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.expandable-header.active + .expandable-content {
+  max-height: 1000px; /* 设置一个足够大的值 */
+  padding: 15px;
+}
+
+.expandable-header.active + .expandable-content p {
+  opacity: 1;
+}
+
+.application-scenarios {
+  margin: 40px 0;
+}
+
+.scenarios-container {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.scenarios-slider {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.scenario {
+  flex: 0 0 250px;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.scenario img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.scenario p {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.slider-prev,
+.slider-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 165, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.slider-prev:hover,
+.slider-next:hover {
+  background-color: rgba(255, 165, 0, 0.8);
+}
+
+.slider-prev {
+  left: 10px;
+}
+
+.slider-next {
+  right: 10px;
+}
+
+.customization {
+  max-width: 800px;
+  margin: 40px auto 0;
+  text-align: center;
+}
+
+.customization-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.customization-description {
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  background-color: #ffa500;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #ff8c00;
+}
+
+/* 视频介绍部分 */
+.video-intro {
+  background: linear-gradient(
+    to bottom,
+    var(--primary-bg),
+    var(--secondary-bg)
+  );
+  padding-bottom: 20px; /* 为分割线留出空间 */
+  position: relative;
+}
+
+.video-intro::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--highlight-color),
+    var(--accent-color-1)
+  );
+}
+
+/* 产品亮点介绍部分 */
+.product-highlights {
+  background: linear-gradient(
+    to bottom,
+    var(--secondary-bg),
+    var(--primary-bg)
+  );
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-highlights::before,
+.product-highlights::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--accent-color-2),
+    transparent
+  );
+}
+
+.product-highlights::before {
+  top: 0;
+}
+
+.product-highlights::after {
+  bottom: 0;
+}
+
+/* 运营需求部分 */
+.operation-requirements {
+  background: linear-gradient(
+    to bottom,
+    var(--primary-bg),
+    var(--secondary-bg)
+  );
+  padding: 60px 0;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.operation-requirements::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--accent-color-1),
+    transparent
+  );
+}
+
+/* 适配场景部分 */
+.application-scenarios {
+  background: linear-gradient(
+    to bottom,
+    var(--secondary-bg),
+    var(--primary-bg)
+  );
+  padding: 60px 0;
+  position: relative;
+}
+
+.application-scenarios::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: repeating-linear-gradient(
+    to right,
+    var(--highlight-color),
+    var(--highlight-color) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+.scenario {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.scenario img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.scenario p {
+  padding: 10px;
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* 通用样式调整 */
+.section-title {
+  text-align: center;
+  color: var(--highlight-color);
+  margin-bottom: 30px;
+  font-size: 2em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2em;
+  }
+
+  .video-intro,
+  .product-highlights,
+  .operation-requirements,
+  .application-scenarios {
+    padding: 40px 0;
+    clip-path: polygon(0 0, 100% 10px, 100% calc(100% - 10px), 0 100%);
+  }
+
+  .highlight-item {
+    flex-basis: 100%;
+  }
+
+  .highlight-item:nth-child(even) {
+    flex-direction: column;
+  }
+
+  .highlight-images {
+    order: -1;
+  }
+}
+
+/* 增加模块间距 */
+.video-intro,
+.product-highlights,
+.operation-requirements,
+.application-scenarios {
+  margin-bottom: 80px; /* 增加底部间距 */
+  padding: 60px 0; /* 增加上下内边距 */
+}
+
+/* 改进产品亮点布局 */
+.highlights-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px; /* 增加项目之间的间距 */
+}
+
+.highlight-item {
+  flex-basis: calc(50% - 20px); /* 两列布局，考虑间距 */
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.highlight-text {
+  padding: 20px;
+}
+
+.highlight-images {
+  order: -1; /* 图片放在文字上方 */
+}
+
+/* 奇数项左图右文，偶数项右图左文 */
+.highlight-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/* 改进运营需求样式 */
+.expandable-item {
+  margin-bottom: 20px; /* 增加项目间距 */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.expandable-header {
+  padding: 20px;
+  font-size: 1.2em;
+  background-color: rgba(255, 165, 0, 0.1);
+  color: var(--highlight-color);
+}
+
+.expandable-content {
+  padding: 0 20px;
+}
+
+/* 改进适配场景样式 */
+.scenario {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.scenario:hover {
+  transform: scale(1.05);
+}
+
+/* 改进CTA按钮样式 */
+.cta-button {
+  background: linear-gradient(
+    45deg,
+    var(--highlight-color),
+    var(--accent-color-1)
+  );
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button:hover {
+  background: linear-gradient(
+    45deg,
+    var(--accent-color-1),
+    var(--highlight-color)
+  );
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .highlight-item {
+    flex-basis: 100%; /* 在小屏幕上变为单列 */
+  }
+
+  .highlight-item:nth-child(even) {
+    flex-direction: column; /* 在小屏幕上保持一致的布局 */
+  }
+
+  .highlight-images {
+    order: -1; /* 确保图片始终在上方 */
+  }
+}
+
+/* 增加整体的层级感 */
+.section-title {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background-color: #ffa500;
+}
+
+/* 增加文字可读性 */
+p,
+li {
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2em;
+  }
+
+  .video-intro,
+  .product-highlights,
+  .operation-requirements,
+  .application-scenarios {
+    padding: 40px 0;
+    clip-path: polygon(0 0, 100% 10px, 100% calc(100% - 10px), 0 100%);
+  }
+
+  .highlight-item {
+    flex-basis: 100%;
+  }
+
+  .highlight-item:nth-child(even) {
+    flex-direction: column;
+  }
+
+  .highlight-images {
+    order: -1;
+  }
+}
+
+/* 确保在所有屏幕尺寸上保持一致的背景渐变 */
+body {
+  background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 上滑淡入动画 */
+@keyframes slideInUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 缩放动画 */
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 应用淡入动画到主要内容 */
+.mofa-content > section {
+  animation: fadeIn 1s ease-out;
+}
+
+/* 应用上滑淡入动画到标题 */
+.section-title {
+  animation: slideInUp 0.8s ease-out;
+}
+
+/* 应用缩放动画到CTA按钮 */
+.cta-button {
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  animation: scale 0.5s ease-in-out;
+}
+
+/* 添加悬停效果到场景卡片 */
+.scenario {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scenario:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 添加脉冲动画到展开按钮 */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.expandable-header::after {
+  animation: pulse 2s infinite;
+}
+
+/* 添加滑动动画到滑块按钮 */
+.slider-prev,
+.slider-next {
+  transition: transform 0.3s ease;
+}
+
+.slider-prev:hover {
+  transform: translateX(-3px) translateY(-50%);
+}
+
+.slider-next:hover {
+  transform: translateX(3px) translateY(-50%);
+}
+
+/* 添加到文件末尾 */
+
+/* 按钮点击波纹效果 */
+.cta-button,
+.expandable-header,
+.slider-prev,
+.slider-next {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 添加到文件末尾或替换相应的部分 */
+
+/* 视频介绍部分 */
+.video-intro {
+  background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+/* 产品亮点介绍部分 */
+.product-highlights {
+  background: linear-gradient(
+    135deg,
+    var(--secondary-bg),
+    var(--accent-color-1)
+  );
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-highlights::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../images/magic-pattern.png") repeat;
+  opacity: 0.05;
+  z-index: -1;
+}
+
+/* 运营需求部分 */
+.operation-requirements {
+  background: linear-gradient(135deg, var(--primary-bg), var(--accent-color-2));
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.operation-requirements::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../images/tech-pattern.png") repeat;
+  opacity: 0.05;
+  z-index: -1;
+}
+
+/* 适配场景部分 */
+.application-scenarios {
+  background: linear-gradient(
+    135deg,
+    var(--secondary-bg),
+    var(--accent-color-1)
+  );
+  position: relative;
+  z-index: 4;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.application-scenarios::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../images/scenario-pattern.png") repeat;
+  opacity: 0.05;
+  z-index: -1;
+}
+
+/* 增强各个模块的视觉分隔 */
+.video-intro,
+.product-highlights,
+.operation-requirements,
+.application-scenarios {
+  padding: 80px 0;
+  margin-bottom: 0;
+  clip-path: polygon(0 0, 100% 20px, 100% calc(100% - 20px), 0 100%);
+}
+
+/* 调整内容容器样式 */
+.mofa-content {
+  max-width: 100%;
+  padding: 0;
+}
+
+.mofa-content > section > .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 增强标题样式 */
+.section-title {
+  font-size: 2.8em;
+  margin-bottom: 50px;
+  text-align: center;
+  color: var(--highlight-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--highlight-color),
+    var(--accent-color-1)
+  );
+}
+
+/* 调整卡片样式 */
+.highlight-item,
+.expandable-item,
+.scenario {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-item:hover,
+.expandable-item:hover,
+.scenario:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .video-intro,
+  .product-highlights,
+  .operation-requirements,
+  .application-scenarios {
+    padding: 60px 0;
+    clip-path: polygon(0 0, 100% 10px, 100% calc(100% - 10px), 0 100%);
+  }
+
+  .section-title {
+    font-size: 2.2em;
+    margin-bottom: 30px;
+  }
+}

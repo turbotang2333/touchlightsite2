@@ -152,23 +152,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const contentWrapper = document.querySelector('.content-wrapper');
 
     function updateParallax() {
-        const scrollY = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        const maxScroll = documentHeight - windowHeight;
-        
-        // 计算背景应该移动的最大距离
-        const maxTranslateY = (documentHeight * 0.5) - windowHeight;
-        
-        // 使用 easeInOutQuad 缓动函数来平滑过渡
-        const progress = scrollY / maxScroll;
-        const easedProgress = progress < 0.5
-            ? 2 * progress * progress
-            : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-        
-        const translateY = easedProgress * maxTranslateY;
-        
-        parallaxBackground.style.transform = `translateY(-${translateY}px)`;
+        const parallaxBackground = document.querySelector('.parallax-background');
+        if (parallaxBackground) {
+            const scrollPosition = window.pageYOffset;
+            parallaxBackground.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+        }
     }
 
     window.addEventListener('scroll', () => {
