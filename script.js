@@ -63,9 +63,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function updateParallax() {
             const scrollY = window.pageYOffset;
-            const translateY = scrollY * 0.7;
-            parallaxBg.style.transform = `translateY(${translateY}px)`;
-            console.log('Parallax update:', scrollY, translateY);
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const maxScroll = documentHeight - windowHeight;
+            
+            // 计算背景应该移动的最大距离
+            const maxTranslateY = (documentHeight * 0.5) - windowHeight;
+            
+            // 使用 easeOutQuad 缓动函数来平滑过渡
+            const progress = Math.min(scrollY / maxScroll, 1); // 限制进度最大为 1
+            const easedProgress = 1 - (1 - progress) * (1 - progress);
+            
+            const translateY = Math.min(easedProgress * maxTranslateY, maxTranslateY);
+            
+            parallaxBackground.style.transform = `translateY(-${translateY}px)`;
         }
 
         window.addEventListener('scroll', () => {
@@ -109,4 +120,61 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('Hamburger or nav-links element not found');
     }
+
+    // 在文件末尾添加以下代码
+    document.addEventListener('DOMContentLoaded', function() {
+        const sloganMission = document.querySelector('.slogan-mission');
+        
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom >= 0
+            );
+        }
+        
+        function animateSloganMission() {
+            if (isElementInViewport(sloganMission)) {
+                sloganMission.classList.add('animate');
+                window.removeEventListener('scroll', animateSloganMission);
+            }
+        }
+        
+        window.addEventListener('scroll', animateSloganMission);
+        animateSloganMission(); // 初始检查，以防元素已经在视口中
+    });
+
+    // 移除 no-js 类，允许 JavaScript 动画
+    document.body.classList.remove('no-js');
+
+    // 添加视差滚动效果
+    const parallaxBackground = document.querySelector('.parallax-background');
+    const contentWrapper = document.querySelector('.content-wrapper');
+
+    function updateParallax() {
+        const scrollY = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const maxScroll = documentHeight - windowHeight;
+        
+        // 计算背景应该移动的最大距离
+        const maxTranslateY = (documentHeight * 0.5) - windowHeight;
+        
+        // 使用 easeInOutQuad 缓动函数来平滑过渡
+        const progress = scrollY / maxScroll;
+        const easedProgress = progress < 0.5
+            ? 2 * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+        
+        const translateY = easedProgress * maxTranslateY;
+        
+        parallaxBackground.style.transform = `translateY(-${translateY}px)`;
+    }
+
+    window.addEventListener('scroll', () => {
+        requestAnimationFrame(updateParallax);
+    });
+
+    // 初始化视差效果
+    updateParallax();
 });

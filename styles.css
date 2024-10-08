@@ -5,21 +5,27 @@
 
 body,
 html {
+  height: 100%;
   margin: 0;
   padding: 0;
   width: 100%;
   font-family: "Noto Sans SC", sans-serif;
   padding-top: 60px; /* 根据您的导航栏高度调整 */
+  overflow-y: scroll; /* 始终显示垂直滚动条 */
 }
 
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-top: 60px; /* 保持导航栏的空间 */
 }
 
 .content-wrapper {
   flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--navbar-height); /* 确保内容不被页脚遮挡 */
 }
 
 .parallax-container {
@@ -27,6 +33,9 @@ body {
   height: var(--parallax-height);
   overflow: hidden;
   position: relative;
+  z-index: 1;
+  background-color: transparent; /* 移除半透明白色背景 */
+  margin-bottom: 0;
 }
 
 .parallax-content {
@@ -36,9 +45,11 @@ body {
 }
 
 .video-container {
-  flex: 3; /* 增加这个值使视频占据更多空间 */
+  flex: 1;
   position: relative;
   overflow: hidden;
+  z-index: 0;
+  height: 50%;
 }
 
 .video-container video {
@@ -60,39 +71,91 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 1rem; /* 减小内边距 */
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  color: #ffffff;
+  height: 50%;
+  z-index: 1; /* 确保文字内容在视频层之上 */
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 @media (min-width: 768px) {
   .parallax-content {
     flex-direction: row;
+    position: relative;
+    height: 100%;
   }
 
   .video-container {
-    flex: 2; /* 在大屏幕上保持视频占据更多空间 */
+    flex: 3; /* 视频部分占据更多空间 */
+    height: 100%;
+    position: relative;
+    overflow: hidden; /* 确保视频不会溢出容器 */
   }
 
   .hero-content {
-    flex: 1;
+    flex: 2; /* 文字部分占据较少空间 */
+    height: 100%;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.6); /* 保持背景半透明 */
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .video-container video {
+    position: absolute;
+    top: 50%;
+    left: 0; /* 将视频对齐到左侧 */
+    width: 100%; /* 设置宽度为100% */
+    height: 100%; /* 设置高度为100% */
+    transform: translateY(-50%); /* 仅在垂直方向上居中 */
+    object-fit: cover; /* 确保视频填满容器 */
   }
 }
 
-/* 调整文字大小，使其在小空间内更加合适 */
-.hero-content h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
+@media (max-width: 767px) {
+  .hero-content {
+    width: 100%; /* 在窄屏上占满宽度 */
+  }
 
-.hero-content p {
-  font-size: 1rem;
-  margin-bottom: 1rem;
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
 }
 
 .cta-button {
-  padding: 8px 16px;
-  font-size: 0.9rem;
+  background-color: rgba(52, 152, 219, 0.8); /* 使按钮略微透明 */
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cta-button:hover {
+  background-color: rgba(41, 128, 185, 0.9); /* 悬停时稍微不透明 */
+  transform: translateY(-2px);
 }
 
 .navbar {
@@ -101,12 +164,12 @@ body {
   left: 0;
   right: 0;
   height: var(--navbar-height);
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   transition: all 0.3s ease;
-  z-index: 1000;
+  z-index: 1000; /* 增加z-index值 */
   display: flex; /* 添加这行 */
   align-items: center; /* 添加这行 */
-  padding: 10px 0;
+  padding: 0 20px;
 }
 
 .navbar nav {
@@ -116,7 +179,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-  width: 100%; /* 添加这行 */
+  width: 100%; /* 添这行 */
   height: 100%; /* 添加这行 */
 }
 
@@ -151,6 +214,7 @@ body {
   display: flex; /* 添加这行 */
   align-items: center; /* 添加这行 */
   height: 100%; /* 添加这行 */
+  font-size: 1.2rem; /* 增加桌面版本的字体大小 */
 }
 
 .hero-content {
@@ -260,11 +324,20 @@ form button:hover {
 }
 
 footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 20px 0;
   flex-shrink: 0;
+  height: var(--navbar-height);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+  font-size: 1rem;
 }
 
 .hamburger {
@@ -274,6 +347,7 @@ footer {
   font-size: 30px;
   color: white;
   cursor: pointer;
+  z-index: 1001; /* 确保汉堡按钮在上层 */
 }
 
 @media (max-width: 768px) {
@@ -301,32 +375,44 @@ footer {
   }
 
   .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: var(--navbar-height); /* 调整顶部位置 */
+    position: fixed;
+    top: var(--navbar-height);
     left: 0;
-    width: 100%;
+    right: 0;
     background-color: rgba(0, 0, 0, 0.9);
-    padding: 0;
+    z-index: 999; /* 确保菜单在视频之上 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 为 center，使整个菜单垂直居中 */
+    align-items: center;
+    padding: 0; /* 移除上下内边距 */
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
   }
 
   .nav-links.show {
-    display: flex;
-    max-height: calc(100vh - 60px); /* 调整这个值以适应您的导航栏高度 */
-    padding: 20px 0;
+    opacity: 1;
+    pointer-events: auto;
+    max-height: calc(
+      100vh - var(--navbar-height)
+    ); /* 调整最大高度为视口高度减去导航栏高度 */
+    overflow-y: auto;
   }
 
   .nav-links li {
-    margin: 15px 0;
+    margin: 0; /* 移除上下margin */
     opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
     text-align: center;
     width: 100%;
+    display: flex; /* 添加 flex 布局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    height: 70px; /* 稍微增加高度 */
   }
 
   .nav-links.show li {
@@ -335,11 +421,15 @@ footer {
   }
 
   .nav-links li a {
-    display: inline-block;
-    padding: 10px 0;
+    display: flex; /* 改为 flex 布局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    padding: 0 20px; /* 移除上下内边距，保留左右内边距 */
+    color: #fff;
+    font-size: 1.3rem; /* 增加字小 */
+    font-weight: bold; /* 添加粗体 */
     width: 100%;
-    color: #fff; /* 确保文本颜色为白色 */
-    font-size: 1.2rem; /* 增大字体大小 */
+    height: 100%; /* 让链接占满整个 li  */
   }
 
   .nav-links li:nth-child(1) {
@@ -350,6 +440,64 @@ footer {
   }
   .nav-links li:nth-child(3) {
     transition-delay: 0.3s;
+  }
+
+  .parallax-container {
+    height: calc(
+      100vh - var(--navbar-height)
+    ); /* 使容器占满整个视口高度减去导航栏高度 */
+  }
+
+  .video-container {
+    flex: 2; /* 减少视频所占比例 */
+  }
+
+  .hero-content {
+    flex: 1;
+    padding: 1.5rem 1rem; /* 减小上下内边距 */
+    justify-content: center; /* 改为对齐 */
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem; /* 稍微减小字体大小 */
+    margin-bottom: 0.3rem; /* 进一步减小标题下方的间距 */
+  }
+
+  .hero-content p {
+    font-size: 1.2rem; /* 稍微减小字体大小 */
+    margin-bottom: 1.5rem; /* 减小段落下方的间距 */
+  }
+
+  .cta-button {
+    padding: 10px 20px; /* 稍微减小按钮尺寸 */
+    font-size: 1rem; /* 稍微减小按钮字体 */
+    margin-bottom: 0.5rem; /* 减小按钮下方的间距 */
+  }
+
+  footer {
+    padding: 0 10px;
+  }
+
+  footer p {
+    font-size: 0.9rem;
+  }
+}
+
+/* 为了确保在更小的屏幕上也有良好的显示效果，可以添加以下媒体查询 */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+    margin-bottom: 0.2rem; /* 在更小的屏幕上进一步减小间距 */
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .cta-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
   }
 }
 
@@ -363,4 +511,408 @@ footer {
 
 body.menu-open {
   overflow: hidden;
+}
+
+/* 默认隐藏移动端专用的菜单项 */
+.mobile-only {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  /* 宽屏时隐藏"首页"选项 */
+  .mobile-only {
+    display: none !important; /* 使用 !important 来确保覆盖其他样式 */
+  }
+}
+
+@media (max-width: 768px) {
+  /* 窄屏时显示"首页"选项 */
+  .mobile-only {
+    display: flex !important; /* 使用 !important 来确保显示 */
+  }
+
+  .nav-links li {
+    /* 保持其他样式不变 */
+    display: none; /* 初始隐藏所有菜单项 */
+  }
+
+  .nav-links.show li {
+    display: flex !important; /* 使用 !important 来确保显示菜单时显示所有菜单项 */
+  }
+}
+
+.slogan-mission {
+  background-color: rgba(255, 255, 255, 0.4); /* 降低初始背景不透明度 */
+  padding: 60px 0;
+  text-align: center;
+  opacity: 1;
+  box-shadow: none;
+  transition: background-color 0.3s ease, color 0.3s ease; /* 添加颜色过渡效 */
+}
+
+.slogan-mission .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.2); /* 添加一个半透明的容器背景 */
+  border-radius: 10px; /* 添加圆角 */
+}
+
+.slogan h2,
+.slogan p,
+.mission h3,
+.mission li {
+  transition: color 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* 添加文字阴影以增加可读性 */
+}
+
+/* 移除或注释掉固定的颜色设置 */
+/*
+.slogan h2 {
+  color: #2c3e50;
+}
+
+.slogan p {
+  color: #34495e;
+}
+
+.mission h3 {
+  color: #2c3e50;
+}
+
+.mission li {
+  color: #34495e;
+}
+*/
+
+.parallax-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150%; /* 增加高度以覆盖更多区域 */
+  background-image: url("images/tech_background.png");
+  background-size: cover;
+  background-position: center top; /* 将背景图片固定在顶部 */
+  background-repeat: no-repeat;
+  z-index: -1;
+  transform: translateY(0); /* 初始位置 */
+  will-change: transform; /* 优化性能 */
+}
+
+/* 在产品展示和公司使命之间添加空白区域 */
+.parallax-spacer {
+  flex-grow: 1; /* 允许空白区域增长以填充剩余空间 */
+  min-height: 200px; /* 保持最小高度 */
+}
+
+/* 在公司使命和页尾之间添加空白区域 */
+.mission-footer-spacer {
+  flex-grow: 1; /* 允许空白区域增长以填充剩余空间 */
+  min-height: calc(200px + var(--navbar-height)); /* 调整最小高度 */
+}
+
+/* 确保其他元素也没有圆角 */
+.parallax-container,
+.nav-links,
+form input,
+form textarea {
+  border-radius: 0;
+}
+
+/* 现有的样式保持不变 */
+
+/* 气与魔法页面特定样式 */
+.mofa-page {
+  background-color: #0a1930; /* 深蓝色背景 */
+  color: #ffffff;
+}
+
+.video-intro {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fullscreen-toggle {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.fullscreen-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.video-description {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  max-width: 600px;
+}
+
+.product-highlights {
+  padding: 50px 0;
+}
+
+.highlights-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.highlight-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  width: calc(50% - 40px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.highlight-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.5); /* 橘黄色光效 */
+}
+
+.operation-requirements {
+  padding: 50px 0;
+}
+
+.requirements-list details {
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.requirements-list summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.application-scenarios {
+  padding: 50px 0;
+}
+
+.scenarios-slider {
+  display: flex;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.scenario {
+  flex: 0 0 auto;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.scenario img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.cta-button {
+  background-color: #ffa500; /* 橘黄色 */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+
+.cta-button:hover {
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.8); /* 光效扩散 */
+}
+
+/* 添加动画效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* 产品亮点样式 */
+.product-highlights {
+  padding: 50px 20px;
+  overflow: hidden;
+}
+
+.highlights-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.highlight-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.highlight-text {
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.highlight-text h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ffa500;
+  word-wrap: break-word;
+}
+
+.highlight-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.highlight-images {
+  width: 100%;
+  overflow: hidden; /* 改为 hidden 以隐藏滚动条 */
+  margin-top: 20px;
+  position: relative;
+  height: 350px;
+  cursor: grab;
+}
+
+.image-stack {
+  display: flex;
+  position: relative;
+  height: 100%;
+  transition: transform 0.3s ease;
+  width: max-content;
+  user-select: none;
+}
+
+.image-stack img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  margin-right: 20px; /* 调整图片之间的间距 */
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0.7; /* 初始状态略微透明 */
+  flex-shrink: 0; /* 防止图片被压缩 */
+}
+
+.image-stack img:last-child {
+  margin-right: 0;
+}
+
+/* 移除滚动条样式 */
+.highlight-images::-webkit-scrollbar {
+  display: none;
+}
+
+.highlight-images {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* 添加以下样式以确保所有卖点左对齐 */
+.highlight-item .highlight-text {
+  text-align: left;
+}
+
+.highlight-item .highlight-images {
+  direction: ltr;
+}
+
+.highlight-item .image-stack {
+  direction: ltr;
+}
+
+.highlight-item .image-row {
+  justify-content: flex-start;
+}
+
+/* 保持两列布局的样式不变 */
+@media (min-width: 1024px) {
+  .highlight-item {
+    width: calc(50% - 20px);
+  }
+
+  .highlight-item:nth-child(even) {
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-highlights {
+    padding: 30px 15px;
+  }
+
+  .highlight-text h3 {
+    font-size: 1.8rem;
+  }
+
+  .highlight-text p {
+    font-size: 1rem;
+  }
+
+  .image-row img {
+    width: 200px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-highlights {
+    padding: 20px 10px;
+  }
+
+  .highlight-text h3 {
+    font-size: 1.5rem;
+  }
+
+  .image-row img {
+    width: 150px;
+    height: 113px;
+  }
+}
+.image-stack img.active {
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  z-index: 2;
 }

@@ -10,20 +10,22 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="no-js">
+    <div class="parallax-background"></div>
     <header class="navbar">
       <nav>
         <a href="index.html" class="logo">扶光Studio</a>
         <button class="hamburger" aria-label="菜单">☰</button>
         <ul class="nav-links">
-          <li><a href="index.html">首页</a></li>
+          <li class="mobile-only"><a href="index.html">首页</a></li>
+          <li><a href="mofa.html">气与魔法</a></li>
           <li><a href="about.html">关于我们</a></li>
-          <li><a href="cases.html">案例展示</a></li>
         </ul>
       </nav>
     </header>
 
     <div class="content-wrapper">
+      <!-- 产品展示 -->
       <div class="parallax-container">
         <div class="parallax-content">
           <div class="video-container">
@@ -38,6 +40,30 @@
           </div>
         </div>
       </div>
+
+      <!-- 添加空白区域 -->
+      <div class="parallax-spacer"></div>
+
+      <!-- 公司使命 -->
+      <section class="slogan-mission">
+        <div class="container">
+          <div class="slogan">
+            <h2>创新科技，引领未来</h2>
+            <p>扶光Studio - 您的AR/VR娱乐体验专家</p>
+          </div>
+          <div class="mission">
+            <h3>我们的使命</h3>
+            <ul>
+              <li>推动AR/VR技术的创新与应���</li>
+              <li>为用户创造沉浸式的娱乐体验</li>
+              <li>促进科技与艺术的完美融合</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 添加空白区域 -->
+      <div class="mission-footer-spacer"></div>
     </div>
 
     <footer>
@@ -45,5 +71,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <script src="dynamic-text-color.js"></script>
   </body>
 </html>
