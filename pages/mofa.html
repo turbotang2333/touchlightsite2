@@ -27,11 +27,13 @@
       <section class="video-intro">
         <div class="video-container">
           <video autoplay loop muted playsinline id="intro-video">
-            <source src="../videos/mofa_intro.mp4" type="video/mp4" />
+            <source src="../videos/Qi & Magic_ Intro.mp4" type="video/mp4" />
+            您的浏览器不支持 HTML5 视频。
           </video>
           <button class="fullscreen-toggle" aria-label="全屏播放">
             全屏播放
           </button>
+          <div class="video-overlay"></div>
         </div>
         <div class="video-description">
           <h1 class="page-title">气与魔法</h1>
@@ -41,7 +43,7 @@
         </div>
       </section>
 
-      <section class="product-highlights">
+      <section class="product-highlights section-after-video">
         <h2 class="section-title">产品亮点</h2>
         <div class="highlights-container">
           <div class="highlight-item">
@@ -53,38 +55,29 @@
             </div>
             <div class="highlight-images">
               <div class="image-slider">
-                <img src="https://picsum.photos/800/600?random=1" alt="场景1" />
-                <img src="https://picsum.photos/800/600?random=2" alt="场景2" />
-                <img src="https://picsum.photos/800/600?random=3" alt="场景3" />
+                <img data-src="../images/1-1.png" alt="多人对战场景1" />
+                <img data-src="../images/1-2.png" alt="多人对战场景2" />
+                <img data-src="../images/1-3.png" alt="多人对战场景3" />
               </div>
               <button class="slider-prev" aria-label="上一张">&#10094;</button>
               <button class="slider-next" aria-label="下一张">&#10095;</button>
             </div>
           </div>
-          <div class="highlight-item">
+          <div class="highlight-item vertical">
+            <div class="highlight-images">
+              <div class="image-slider">
+                <img data-src="../images/2-1.png" alt="现场直播场景1" />
+                <img data-src="../images/2-2.png" alt="现场直播场景2" />
+                <img data-src="../images/2-3.png" alt="现场直播场景3" />
+              </div>
+              <button class="slider-prev" aria-label="上一张">&#10094;</button>
+              <button class="slider-next" aria-label="下一张">&#10095;</button>
+            </div>
             <div class="highlight-text">
               <h3 class="highlight-title">现场实时直播，引爆观众热情</h3>
               <p class="highlight-description">
                 通过大屏幕直播游戏画面，增强观众的参与感，带动更多现场人气。
               </p>
-            </div>
-            <div class="highlight-images">
-              <div class="image-slider">
-                <img
-                  src="https://picsum.photos/800/600?random=4"
-                  alt="直播场景1"
-                />
-                <img
-                  src="https://picsum.photos/800/600?random=5"
-                  alt="直播场景2"
-                />
-                <img
-                  src="https://picsum.photos/800/600?random=6"
-                  alt="直播场景3"
-                />
-              </div>
-              <button class="slider-prev" aria-label="上一张">&#10094;</button>
-              <button class="slider-next" aria-label="下一张">&#10095;</button>
             </div>
           </div>
           <div class="highlight-item">
@@ -96,47 +89,29 @@
             </div>
             <div class="highlight-images">
               <div class="image-slider">
-                <img
-                  src="https://picsum.photos/800/600?random=7"
-                  alt="游戏体验1"
-                />
-                <img
-                  src="https://picsum.photos/800/600?random=8"
-                  alt="游戏体验2"
-                />
-                <img
-                  src="https://picsum.photos/800/600?random=9"
-                  alt="游戏体验3"
-                />
+                <img data-src="../images/3-1.png" alt="高效游戏体验1" />
+                <img data-src="../images/3-2.png" alt="高效游戏体验2" />
+                <img data-src="../images/3-3.png" alt="高效游戏体验3" />
               </div>
               <button class="slider-prev" aria-label="上一张">&#10094;</button>
               <button class="slider-next" aria-label="下一张">&#10095;</button>
             </div>
           </div>
-          <div class="highlight-item">
+          <div class="highlight-item vertical">
+            <div class="highlight-images">
+              <div class="image-slider">
+                <img data-src="../images/4-1.png" alt="媒体报道1" />
+                <img data-src="../images/4-2.png" alt="媒体报道2" />
+                <img data-src="../images/4-3.png" alt="媒体报道3" />
+              </div>
+              <button class="slider-prev" aria-label="上一张">&#10094;</button>
+              <button class="slider-next" aria-label="下一张">&#10095;</button>
+            </div>
             <div class="highlight-text">
               <h3 class="highlight-title">媒体认可与传播</h3>
               <p class="highlight-description">
                 央视、新华网等多家媒体报道，极具传播和吸引力。
               </p>
-            </div>
-            <div class="highlight-images">
-              <div class="image-slider">
-                <img
-                  src="https://picsum.photos/800/600?random=10"
-                  alt="媒体报道1"
-                />
-                <img
-                  src="https://picsum.photos/800/600?random=11"
-                  alt="媒体报道2"
-                />
-                <img
-                  src="https://picsum.photos/800/600?random=12"
-                  alt="媒体报道3"
-                />
-              </div>
-              <button class="slider-prev" aria-label="上一张">&#10094;</button>
-              <button class="slider-next" aria-label="下一张">&#10095;</button>
             </div>
           </div>
         </div>
@@ -173,45 +148,27 @@
         <div class="scenarios-container">
           <div class="scenarios-slider">
             <div class="scenario">
-              <img
-                src="https://picsum.photos/200/150?random=14"
-                alt="市集活动"
-              />
+              <img data-src="../images/场景-1.png" alt="适配场景1" />
               <p>市集活动</p>
             </div>
             <div class="scenario">
-              <img
-                src="https://picsum.photos/200/150?random=15"
-                alt="商圈广场"
-              />
+              <img data-src="../images/场景-2.png" alt="适配场景2" />
               <p>商圈广场</p>
             </div>
             <div class="scenario">
-              <img
-                src="https://picsum.photos/200/150?random=16"
-                alt="公园营地"
-              />
+              <img data-src="../images/场景-3.png" alt="适配场景3" />
               <p>公园营地</p>
             </div>
             <div class="scenario">
-              <img
-                src="https://picsum.photos/200/150?random=17"
-                alt="门店空位"
-              />
+              <img data-src="../images/场景-4.png" alt="适配场景4" />
               <p>门店空位</p>
             </div>
             <div class="scenario">
-              <img
-                src="https://picsum.photos/200/150?random=18"
-                alt="漫展市集"
-              />
+              <img data-src="../images/场景-5.png" alt="适配场景5" />
               <p>漫展市集</p>
             </div>
             <div class="scenario">
-              <img
-                src="https://picsum.photos/200/150?random=19"
-                alt="儿童乐园"
-              />
+              <img data-src="../images/场景-6.png" alt="适配场景6" />
               <p>儿童乐园</p>
             </div>
           </div>
@@ -234,11 +191,5 @@
 
     <script src="../js/script.js"></script>
     <script src="../js/mofa.js"></script>
-    <script>
-      console.log("HTML loaded");
-      document.addEventListener("DOMContentLoaded", function () {
-        console.log("DOMContentLoaded event fired");
-      });
-    </script>
   </body>
 </html>

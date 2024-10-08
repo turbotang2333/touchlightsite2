@@ -10,6 +10,15 @@
   --accent-color-2: #4169e1; /* 皇家蓝 */
   --button-color: #ffd700; /* 金黄色 */
   --button-hover-color: #ffa500; /* 橙色 */
+
+  /* 添加新的字体大小变量 */
+  --base-font-size: 16px;
+  --h1-font-size: 2.5rem;
+  --h2-font-size: 2rem;
+  --h3-font-size: 1.75rem;
+  --large-font-size: 1.25rem;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
 }
 
 body,
@@ -22,8 +31,11 @@ html {
   padding-top: 60px; /* 根据您的导航栏高度调整 */
   overflow-y: scroll; /* 始终显示垂直滚动条 */
   overflow-x: hidden;
-  background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
+  /* 以下行已被完全删除 */
+  /* background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg)); */
   color: var(--text-color);
+  font-size: var(--base-font-size);
+  line-height: 1.5;
 }
 
 body {
@@ -31,6 +43,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   padding-top: 60px; /* 保持导航栏的空间 */
+  background-color: transparent;
 }
 
 .content-wrapper {
@@ -81,29 +94,32 @@ body {
 }
 
 .hero-content {
-  flex: 1;
+  width: 100%;
+  height: 40%; /* 文字部分占40% */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.7); /* 半透明黑色背景 */
-  padding: 20px;
-  color: #ffffff;
-  height: 50%;
-  z-index: 1; /* 确保文字内容在视频层之上 */
+  padding: 20px; /* 增加内边距 */
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  box-sizing: border-box;
 }
 
 .hero-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: var(--h1-font-size);
+  margin-bottom: 0.5rem;
 }
 
 .hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  font-size: var(--large-font-size);
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  font-size: var(--normal-font-size);
+  padding: 0.75rem 1.5rem;
 }
 
 @media (min-width: 768px) {
@@ -149,11 +165,16 @@ body {
   }
 
   .hero-content h1 {
-    font-size: 2rem;
+    font-size: var(--h2-font-size);
   }
 
   .hero-content p {
-    font-size: 1rem;
+    font-size: var(--normal-font-size);
+  }
+
+  .cta-button {
+    font-size: var(--normal-font-size);
+    padding: 0.625rem 1.25rem;
   }
 }
 
@@ -230,7 +251,7 @@ body {
   display: flex; /* 添加这行 */
   align-items: center; /* 添加这行 */
   height: 100%; /* 添加这行 */
-  font-size: 1.2rem; /* 增加桌面版本的字体大小 */
+  font-size: var(--normal-font-size);
 }
 
 .hero-content {
@@ -353,7 +374,7 @@ footer {
 
 footer p {
   margin: 0;
-  font-size: 1rem;
+  font-size: var(--small-font-size);
 }
 
 .hamburger {
@@ -419,7 +440,7 @@ footer p {
   }
 
   .nav-links li {
-    margin: 0; /* 移除上下margin */
+    margin: 0; /* 移除下margin */
     opacity: 0;
     transform: translateY(-10px);
     transition: all 0.3s ease-in-out;
@@ -461,7 +482,7 @@ footer p {
   .parallax-container {
     height: calc(
       100vh - var(--navbar-height)
-    ); /* 使容器占满整个视口高度减去导航栏高度 */
+    ); /* 使容器占满整个视口高度减去导航栏度 */
   }
 
   .video-container {
@@ -475,19 +496,16 @@ footer p {
   }
 
   .hero-content h1 {
-    font-size: 2.5rem; /* 稍微减小字体大小 */
-    margin-bottom: 0.3rem; /* 进一步减小标题下方的间距 */
+    font-size: var(--h2-font-size);
   }
 
   .hero-content p {
-    font-size: 1.2rem; /* 稍微减小字体大小 */
-    margin-bottom: 1.5rem; /* 减小段落下方的间距 */
+    font-size: var(--normal-font-size);
   }
 
   .cta-button {
-    padding: 10px 20px; /* 稍微减小按钮尺寸 */
-    font-size: 1rem; /* 稍微减小按钮字体 */
-    margin-bottom: 0.5rem; /* 减小按钮下方的间距 */
+    font-size: var(--normal-font-size);
+    padding: 0.625rem 1.25rem;
   }
 
   footer {
@@ -495,25 +513,23 @@ footer p {
   }
 
   footer p {
-    font-size: 0.9rem;
+    font-size: var(--small-font-size);
   }
 }
 
 /* 为了确保在更小的屏幕上也有良好的显示效果，可以添加以下媒体查询 */
 @media (max-width: 480px) {
   .hero-content h1 {
-    font-size: 2rem;
-    margin-bottom: 0.2rem; /* 在更的屏幕上进步减小距 */
+    font-size: var(--h2-font-size);
   }
 
   .hero-content p {
-    font-size: 1rem;
-    margin-bottom: 1.2rem;
+    font-size: var(--normal-font-size);
   }
 
   .cta-button {
-    padding: 8px 16px;
-    font-size: 0.9rem;
+    font-size: var(--normal-font-size);
+    padding: 0.625rem 1.25rem;
   }
 }
 
@@ -535,7 +551,7 @@ body.menu-open {
 }
 
 @media (min-width: 769px) {
-  /* 宽屏时隐藏"首页"选项 */
+  /* 宽屏时隐"首页"选项 */
   .mobile-only {
     display: none !important; /* 使用 !important 来确保覆盖其他样式 */
   }
@@ -564,30 +580,40 @@ body.menu-open {
   background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
 }
 
+/* 添加这个新的伪元素来创建半透明背景 */
+.slogan-mission::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1); /* 白色背景，透明度为0.1 */
+  z-index: 0;
+}
+
 .slogan-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
   position: relative;
-  z-index: 1;
+  z-index: 1; /* 确保内容在半透明背景之上 */
 }
 
 .slogan-content {
   max-width: 600px;
 }
 
-.slogan-content h2 {
-  font-size: 3.5rem;
-  line-height: 1.2;
-  margin-bottom: 20px;
-  color: var(--highlight-color);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+.slogan-content h2.slogan-chinese {
+  font-size: var(--h1-font-size);
+}
+
+.slogan-content h3.slogan-english {
+  font-size: var(--h2-font-size);
 }
 
 .slogan-content p {
-  font-size: 1.5rem;
-  color: var(--text-color);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  font-size: var(--large-font-size);
 }
 
 .slogan-shape {
@@ -602,7 +628,7 @@ body.menu-open {
 }
 
 .slogan-shape::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 20%;
   left: 10%;
@@ -613,7 +639,7 @@ body.menu-open {
 }
 
 .slogan-shape::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 10%;
   right: 20%;
@@ -624,12 +650,16 @@ body.menu-open {
 }
 
 @media (max-width: 768px) {
-  .slogan-content h2 {
-    font-size: 2.5rem;
+  .slogan-content h2.slogan-chinese {
+    font-size: var(--h2-font-size);
+  }
+
+  .slogan-content h3.slogan-english {
+    font-size: var(--h3-font-size);
   }
 
   .slogan-content p {
-    font-size: 1.2rem;
+    font-size: var(--normal-font-size);
   }
 
   .slogan-shape {
@@ -643,14 +673,20 @@ body.menu-open {
   top: 0;
   left: 0;
   width: 100%;
-  height: 150%; /* 增加高度以覆盖更多区域 */
-  background-image: url("../images/tech_background.png"); /* 更新背景图片路径 */
-  background-size: cover;
-  background-position: center top; /* 将背景图片固定在顶部 */
-  background-repeat: no-repeat;
+  height: 150%; /* 保持原有的高度设置 */
+  background: linear-gradient(
+    135deg,
+    var(--primary-bg),
+    var(--secondary-bg)
+  ); /* 应用渐变背景 */
+  /* 移除以下属性 */
+  /* background-image: url("../images/tech_background.png"); */
+  /* background-size: cover; */
+  /* background-position: center top; */
+  /* background-repeat: no-repeat; */
   z-index: -1;
-  transform: translateY(0); /* 初始位置 */
-  will-change: transform; /* 优化性能 */
+  transform: translateY(0);
+  will-change: transform;
 }
 
 /* 在产品展示和司使命之间添加空白区域 */
@@ -662,7 +698,9 @@ body.menu-open {
 /* 在公司使命和页尾之间添加空白区域 */
 .mission-footer-spacer {
   flex-grow: 1; /* 允许空白区域增长以填充剩余空间 */
-  min-height: calc((100px + var(--navbar-height)) / 3); /* 将最小高度减少到原来的1/3 */
+  min-height: calc(
+    (100px + var(--navbar-height)) / 3
+  ); /* 将最小高度减少到原来的1/3 */
 }
 
 /* 确保其他元素也没有圆角 */
@@ -683,97 +721,91 @@ form textarea {
 
 .video-intro {
   position: relative;
-  height: 50vh; /* 将高度改为视口高度的50% */
-  min-height: 300px; /* 设置最小高度，确保在小屏幕上也有足够的空间 */
+  width: 100%;
+  height: calc(
+    100vh - var(--navbar-height) - 20px
+  ); /* 减去导航栏的高度和一个小间距 */
   overflow: hidden;
+  margin-top: 20px; /* 减少顶部边距 */
 }
 
+/* 调整视频容器以填满整个 video-intro 区域 */
 .video-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
+/* 确保视频填满容器并保持比例 */
 .video-container video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.fullscreen-toggle {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.fullscreen-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-}
-
+/* 调整文字描述的位置 */
 .video-description {
   position: absolute;
-  bottom: 50px;
-  left: 50px;
-  max-width: 600px;
+  bottom: 5%; /* 稍微向上移动 */
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 20px;
+  z-index: 3;
 }
 
 .page-title {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
 }
 
 .subtitle {
-  font-size: 1.2rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-size: 1.2em;
 }
 
-/* 响应式设计 */
+/* 添加一个新的类来为下一个部分创建一些额外的顶部空间 */
+.section-after-video {
+  margin-top: 50px; /* 调整这个值以获得所需的间距 */
+}
+
 @media (max-width: 768px) {
   .video-intro {
-    height: 40vh; /* 在小屏幕上进一步减小高度 */
-    min-height: 250px;
-  }
-
-  .page-title {
-    font-size: 2rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
+    height: 60vh; /* 在小屏幕上减小高度 */
+    margin-top: 10px; /* 在小屏幕上进一步减少顶部边距 */
   }
 
   .video-description {
-    bottom: 30px;
-    left: 30px;
+    bottom: 0; /* 在小屏幕上将文字描述移到底部 */
+  }
+
+  .page-title {
+    font-size: 2em;
+  }
+
+  .subtitle {
+    font-size: 1em;
   }
 }
 
 @media (max-width: 480px) {
   .video-intro {
-    height: 30vh; /* 在更小的屏幕上再次减小高度 */
-    min-height: 200px;
-  }
-
-  .page-title {
-    font-size: 1.8rem;
-  }
-
-  .subtitle {
-    font-size: 0.9rem;
+    height: 50vh; /* 在更小的屏幕上进一步减小高度 */
   }
 
   .video-description {
-    bottom: 20px;
-    left: 20px;
+    bottom: 0; /* 在更小的屏幕上将文字描述移到底部 */
+  }
+
+  .page-title {
+    font-size: 1.8em;
+  }
+
+  .subtitle {
+    font-size: 0.9em;
   }
 }
 
@@ -1217,7 +1249,7 @@ footer {
 .product-highlights,
 .operation-requirements,
 .application-scenarios {
-  margin-bottom: 80px; /* 增加底部间距 */
+  margin-bottom: 80px; /* 增加部间距 */
   padding: 60px 0; /* 增加上下内边距 */
 }
 
@@ -1230,7 +1262,7 @@ footer {
 }
 
 .highlight-item {
-  flex-basis: calc(50% - 20px); /* 两列布局，考虑间距 */
+  flex-basis: calc(50% - 20px); /* 列布局，考虑间距 */
   display: flex;
   flex-direction: column;
   background-color: rgba(255, 255, 255, 0.05);
@@ -1666,50 +1698,49 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 70vh; /* 将高度设置为视口高度的70% */
+  height: 80vh; /* 增加整体高度 */
   margin-bottom: 2vh;
 }
 
 .parallax-container {
   width: 100%;
-  height: 66.67%; /* 视频部分占2/3 */
+  height: 60%; /* 视频部分占60% */
 }
 
 .hero-content {
   width: 100%;
-  height: 33.33%; /* 文字部分占1/3 */
+  height: 40%; /* 文字部分占40% */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  padding: 20px; /* 增加内边距 */
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   box-sizing: border-box;
 }
 
 .hero-content h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: var(--h1-font-size);
+  margin-bottom: 0.5rem;
 }
 
 .hero-content p {
-  font-size: 1rem;
-  margin-bottom: 15px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  font-size: var(--large-font-size);
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .cta-button {
-  padding: 8px 16px;
-  font-size: 0.9rem;
+  font-size: var(--normal-font-size);
+  padding: 0.75rem 1.5rem;
 }
 
 /* 响应式调整 - 宽屏 (767px以上) */
 @media (min-width: 767px) {
   .video-text-container {
     flex-direction: row;
-    height: 70vh; /* 保持70%的视口高度 */
+    height: 70vh;
   }
 
   .parallax-container {
@@ -1723,46 +1754,44 @@ body {
   }
 
   .hero-content h1 {
-    font-size: 2.2rem;
+    font-size: var(--h2-font-size);
   }
 
   .hero-content p {
-    font-size: 1.1rem;
+    font-size: var(--normal-font-size);
   }
 
   .cta-button {
-    padding: 10px 20px;
-    font-size: 1rem;
+    font-size: var(--normal-font-size);
+    padding: 0.625rem 1.25rem;
   }
 }
 
 /* 移动设备调整 (767px及以下) */
 @media (max-width: 766px) {
   .video-text-container {
-    height: 70vh; /* 在移动设备上也保持70%的视口高度 */
+    height: 80vh; /* 保持80%的视口高度 */
   }
 
   .parallax-container {
-    height: 66.67%; /* 视频部分占2/3 */
+    height: 60%; /* 视频部分占60% */
   }
 
   .hero-content {
-    height: 33.33%; /* 文字部分占1/3 */
+    height: 40%; /* 文字部分占40% */
   }
 
   .hero-content h1 {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
+    font-size: var(--h2-font-size);
   }
 
   .hero-content p {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
+    font-size: var(--normal-font-size);
   }
 
   .cta-button {
-    padding: 6px 12px;
-    font-size: 0.8rem;
+    font-size: var(--normal-font-size);
+    padding: 0.625rem 1.25rem;
   }
 }
 
@@ -1789,4 +1818,140 @@ body {
 .content-wrapper {
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+/* 找到 .video-text-container 的样式，并在其后添加以下代码 */
+.video-text-container {
+  /* 保持现有的样式不变 */
+  margin-bottom: 80px; /* 增加底部边距，您可以根据需要调整这个值 */
+}
+
+/* 找到 .slogan-mission 的样式，并在其前添加以下代码 */
+.slogan-mission {
+  margin-top: 80px; /* 增加顶部边距，您可以根据需要调整这个值 */
+  /* 保持现有的样式不变 */
+}
+
+/* 如果之前有 .parallax-spacer 的样式，可以调整或删除它 */
+.parallax-spacer {
+  height: 160px; /* 增加高度，您可以根据需要调整这个值 */
+}
+
+/* 如果需要在移动设备上有不同的间距，可以添加以下媒体查询 */
+@media (max-width: 768px) {
+  .video-text-container {
+    margin-bottom: 40px; /* 在移动设备上使用较小的间距 */
+  }
+
+  .slogan-mission {
+    margin-top: 40px; /* 在移动设备上使用较小的间距 */
+  }
+
+  .parallax-spacer {
+    height: 80px; /* 在移动设备上使用较小的高度 */
+  }
+}
+
+/* 在文件的适当位置添加以下样式 */
+
+@keyframes fireGlow {
+  0% {
+    box-shadow: 0 0 5px #ff6600, 0 0 10px #ff6600, 0 0 15px #ff6600,
+      0 0 20px #ff6600;
+  }
+  50% {
+    box-shadow: 0 0 10px #ff6600, 0 0 20px #ff6600, 0 0 30px #ff6600,
+      0 0 40px #ff6600;
+  }
+  100% {
+    box-shadow: 0 0 5px #ff6600, 0 0 10px #ff6600, 0 0 15px #ff6600,
+      0 0 20px #ff6600;
+  }
+}
+.cta-button {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  margin-top: 15px;
+  background-color: #ff6600; /* 火焰橙色 */
+  color: #ffffff; /* 纯白色文字 */
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  animation: fireGlow 2s infinite;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8); /* 添加文字阴影 */
+  font-weight: bold; /* 加粗文字 */
+}
+
+.cta-button::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: rotate(45deg);
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #ff8533; /* 稍亮的橙色 */
+  transform: scale(1.05);
+  animation: fireGlow 1s infinite;
+  color: #ffffff; /* 确保悬停时文字颜色保持纯白 */
+}
+
+.cta-button:hover::before {
+  top: -100%;
+  left: -100%;
+}
+
+/* 移动设备调整 */
+@media (max-width: 766px) {
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+}
+
+.highlight-item.vertical {
+  flex-direction: column;
+}
+
+.highlight-item.vertical .highlight-images {
+  order: -1; /* 确保图片在上方 */
+}
+
+@media (min-width: 1024px) {
+  .highlight-item.vertical {
+    width: calc(50% - 20px); /* 保持两列布局 */
+  }
+}
+
+.video-container {
+  position: relative;
+  /* 保持其他现样式 */
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1; /* 确保覆盖层在视频上方，但在全屏按钮下方 */
+}
+
+.fullscreen-toggle {
+  /* 保持其他现有样式 */
+  z-index: 2; /* 确保全屏按钮在覆盖层上方 */
 }
