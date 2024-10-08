@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>扶光Touch Light Studio - 沉浸式AR/VR娱乐体验</title>
+    <title>扶光TouchLight</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap"
@@ -14,7 +14,7 @@
     <div class="parallax-background"></div>
     <header class="navbar">
       <nav>
-        <a href="index.html" class="logo">扶光Studio</a>
+        <a href="index.html" class="logo">扶光TouchLight</a>
         <button class="hamburger" aria-label="菜单">☰</button>
         <ul class="nav-links">
           <li class="mobile-only"><a href="index.html">首页</a></li>
@@ -26,43 +26,39 @@
 
     <div class="content-wrapper">
       <!-- 产品展示 -->
-      <div class="parallax-container">
-        <div class="parallax-content">
-          <div class="video-container">
-            <video autoplay loop muted playsinline>
-              <source src="videos/ar_background.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="hero-content">
-            <h1>气与魔法</h1>
-            <p>多人AR线下对战游戏</p>
-            <button class="cta-button">了解更多</button>
+      <div class="video-text-container">
+        <div class="parallax-container">
+          <div class="parallax-content">
+            <div class="video-container">
+              <video autoplay loop muted playsinline preload="auto" poster="images/video-poster.jpg">
+                <source src="videos/ar_background.webm" type="video/webm">
+                <source src="videos/ar_background.mp4" type="video/mp4">
+                您的浏览器不支持 HTML5 视频。
+              </video>
+            </div>
           </div>
         </div>
+        <div class="hero-content">
+          <h1>气与魔法</h1>
+          <p>多人AR线下对战游戏</p>
+          <a href="pages/mofa.html" class="cta-button">了解更多</a>
+        </div>
       </div>
-
-      <!-- 添加空白区域 -->
-      <div class="parallax-spacer"></div>
+      <!-- 移除空白区域 -->
+      <!-- <div class="parallax-spacer" style="height: 20px;"></div> -->
 
       <!-- 公司使命 -->
       <section class="slogan-mission">
-        <div class="container">
-          <div class="slogan">
-            <h2>创新科技，引领未来</h2>
-            <p>扶光Studio - 您的AR/VR娱乐体验专家</p>
+        <div class="slogan-container">
+          <div class="slogan-content">
+            <h2>Dance with Light,<br>Shape the Future</h2>
+            <p>创造空间计算时代的乐趣与价值</p>
           </div>
-          <div class="mission">
-            <h3>我们的使命</h3>
-            <ul>
-              <li>推动AR/VR技术的创新与应</li>
-              <li>为用户创造沉浸式的娱乐体验</li>
-              <li>促进科技与艺术的完美融合</li>
-            </ul>
-          </div>
+          <div class="slogan-shape"></div>
         </div>
       </section>
 
-      <!-- 添加空白区域 -->
+      <!-- 调整空白区域 -->
       <div class="mission-footer-spacer"></div>
     </div>
 
@@ -72,6 +68,6 @@
 
     <script src="js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
-    <script src="js/dynamic-text-color.js"></script>
+    <!-- <script src="js/dynamic-text-color.js"></script> -->
   </body>
 </html>
